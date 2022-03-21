@@ -1,31 +1,29 @@
-import { Component } from 'react';
+import { useState } from 'react';
 
 import './search-panel.css';
 
-class SearchPanel extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      term: ''
-    }
-  }
+const SearchPanel = (props) => {
 
-  onUpdateSearch = (e) => {
+  const [state, setState] = useState({
+    term: ''
+  })
+
+  const onUpdateSearch = (e) => {
     const term = e.target.value;
-    this.setState({term});
-    this.props.onUpdateSearch(term);
+    setState({term});
+    props.onUpdateSearch(term);
   }
 
-  render() {
+
     return (
       <input 
       type="text"
       className="form-control search-input"
       placeholder="Find an employee"
-      value={this.state.term}
-      onChange={this.onUpdateSearch} />
+      value={state.term}
+      onChange={onUpdateSearch} />
     );
-  }
+  
 };
 
 export default SearchPanel;
